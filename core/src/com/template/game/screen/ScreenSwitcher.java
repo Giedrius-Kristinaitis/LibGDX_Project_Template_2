@@ -2,13 +2,13 @@ package com.template.game.screen;
 
 import com.badlogic.gdx.Gdx;
 
-public class ScreenManager implements ScreenSwitcherInterface, ScreenDestroyerInterface {
+public class ScreenSwitcher implements ScreenSwitcherInterface, ScreenDestroyerInterface {
 
     private ScreenInterface currentScreen;
 
     private ScreenApplierInterface screenApplier;
 
-    public ScreenManager(ScreenApplierInterface screenApplier) {
+    public ScreenSwitcher(ScreenApplierInterface screenApplier) {
         this.screenApplier = screenApplier;
     }
 
