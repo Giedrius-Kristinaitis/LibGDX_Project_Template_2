@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public abstract class Screen extends ScreenAdapter implements ScreenInterface {
+public class Screen extends ScreenAdapter implements ScreenInterface {
 
     private Viewport viewport;
 
@@ -67,6 +67,19 @@ public abstract class Screen extends ScreenAdapter implements ScreenInterface {
         stage.getViewport().apply();
         stage.act(delta);
         stage.draw();
+
+        // TODO: refactor method into two threads - renderer and updater (which will be optional)
+        // TODO: register preferences, arguments, create ui template parsing from files
+    }
+
+    @Override
+    public void draw(Batch batch, OrthographicCamera cam, float delta) {
+
+    }
+
+    @Override
+    public void update(float delta) {
+
     }
 
     @Override
@@ -79,12 +92,10 @@ public abstract class Screen extends ScreenAdapter implements ScreenInterface {
     public void show() {
         super.show();
 
-        setupUserInterface(stage);
+        // TODO: setup ui
     }
 
     private void initialize() {
         viewport.apply(true);
     }
-
-    protected abstract void setupUserInterface(Stage stage);
 }
