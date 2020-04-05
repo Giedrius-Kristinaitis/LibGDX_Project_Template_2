@@ -1,4 +1,4 @@
-package com.template.game.config.node;
+package com.template.game.io.file.noded.node;
 
 public interface NodeInterface {
 

@@ -1,4 +1,4 @@
-package com.template.game.config.file.line;
+package com.template.game.io.file.noded.line;
 
 public interface TrimmerInterface {
 

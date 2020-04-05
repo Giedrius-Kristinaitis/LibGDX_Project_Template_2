@@ -1,4 +1,4 @@
-package com.template.game.config.file.converter;
+package com.template.game.io.file.converter;
 
 import java.io.InputStream;
 

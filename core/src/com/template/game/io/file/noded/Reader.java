@@ -1,12 +1,12 @@
-package com.template.game.config.file;
+package com.template.game.io.file.noded;
 
-import com.template.game.config.file.converter.ConverterInterface;
-import com.template.game.config.file.line.IndentationCalculatorInterface;
-import com.template.game.config.file.line.Trimmer;
-import com.template.game.config.file.line.TrimmerInterface;
-import com.template.game.config.file.line.ValidatorInterface;
-import com.template.game.config.node.Node;
-import com.template.game.config.node.NodeInterface;
+import com.template.game.io.file.converter.ConverterInterface;
+import com.template.game.io.file.noded.line.IndentationCalculatorInterface;
+import com.template.game.io.file.noded.line.Trimmer;
+import com.template.game.io.file.noded.line.TrimmerInterface;
+import com.template.game.io.file.noded.line.ValidatorInterface;
+import com.template.game.io.file.noded.node.Node;
+import com.template.game.io.file.noded.node.NodeInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
