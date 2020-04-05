@@ -1,7 +1,8 @@
 package com.template.game.io.file.noded;
 
+import com.di.annotation.Parameters;
 import com.template.game.io.file.converter.ConverterInterface;
-import com.template.game.io.file.noded.line.IndentationCalculatorInterface;
+import com.template.game.io.file.noded.line.CalculatorInterface;
 import com.template.game.io.file.noded.line.Trimmer;
 import com.template.game.io.file.noded.line.TrimmerInterface;
 import com.template.game.io.file.noded.line.ValidatorInterface;
@@ -17,12 +18,13 @@ public class Reader implements ReaderInterface {
     private static final String DELIMITER = ":";
     private static final String COMMENT_SYMBOL = "#";
 
-    private IndentationCalculatorInterface indentationCalculator;
+    private CalculatorInterface indentationCalculator;
     private ValidatorInterface validator;
     private ConverterInterface inputConverter;
     private TrimmerInterface trimmer;
 
-    public Reader(IndentationCalculatorInterface indentationCalculator, ValidatorInterface validator, ConverterInterface inputConverter, Trimmer trimmer) {
+    @Parameters({"indentationCalculator", "validator", "inputConverter", "trimmer"})
+    public Reader(CalculatorInterface indentationCalculator, ValidatorInterface validator, ConverterInterface inputConverter, Trimmer trimmer) {
         this.indentationCalculator = indentationCalculator;
         this.validator = validator;
         this.inputConverter = inputConverter;

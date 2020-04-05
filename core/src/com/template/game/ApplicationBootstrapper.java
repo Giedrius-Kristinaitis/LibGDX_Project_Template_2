@@ -9,12 +9,10 @@ import com.template.game.screen.ScreenInterface;
 
 public class ApplicationBootstrapper extends Game implements ScreenApplierInterface {
 
-    private ObjectManagerInterface objectManager;
-
     private GameInterface game;
 
     public ApplicationBootstrapper() {
-        initialize();
+        bootstrap();
     }
 
     @Override
@@ -41,8 +39,8 @@ public class ApplicationBootstrapper extends Game implements ScreenApplierInterf
         super.render();
     }
 
-    private void initialize() {
-        objectManager = new ObjectManager(
+    private void bootstrap() {
+        ObjectManagerInterface objectManager = new ObjectManager(
                 new DependencyInjectionPreferenceRegistry(),
                 new DependencyInjectionArgumentRegistry()
         );
