@@ -1,8 +1,8 @@
-package com.template.game.view;
+package com.template.game.view.layout;
 
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
-public interface ParserInterface {
+public interface LayoutParserInterface {
 
     WidgetGroup parse(String viewFile);
 }
