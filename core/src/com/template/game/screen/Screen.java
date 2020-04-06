@@ -69,6 +69,7 @@ public class Screen extends ScreenAdapter implements ScreenInterface {
         stage.draw();
 
         // TODO: refactor method into two threads - renderer and updater (which will be optional)
+        // TODO: split rendering and updating responsibilities into two classes
         // TODO: register preferences, arguments, create ui template parsing from files
     }
 

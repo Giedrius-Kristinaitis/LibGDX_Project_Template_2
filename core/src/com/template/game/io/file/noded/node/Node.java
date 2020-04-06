@@ -8,7 +8,6 @@ public class Node implements NodeInterface {
     private Map<String, String> values;
     private Map<String, NodeInterface> nodes;
     private NodeInterface parentNode;
-    private String name;
 
     public Node() {
         values = new HashMap<String, String>();
@@ -53,5 +52,15 @@ public class Node implements NodeInterface {
     @Override
     public NodeInterface getParentNode() {
         return parentNode;
+    }
+
+    @Override
+    public Map<String, NodeInterface> getNodes() {
+        return nodes;
+    }
+
+    @Override
+    public Map<String, String> getValues() {
+        return values;
     }
 }

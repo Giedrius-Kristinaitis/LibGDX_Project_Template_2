@@ -16,6 +16,14 @@ import com.template.game.io.file.noded.node.ValueFinderInterface;
 import com.template.game.resources.ResourceManager;
 import com.template.game.resources.ResourceManagerInterface;
 import com.template.game.screen.*;
+import com.template.game.view.Parser;
+import com.template.game.view.ParserInterface;
+import com.template.game.view.component.ComponentFactory;
+import com.template.game.view.component.ComponentFactoryInterface;
+import com.template.game.view.layout.LayoutFactory;
+import com.template.game.view.layout.LayoutFactoryInterface;
+import com.template.game.view.TypeResolver;
+import com.template.game.view.TypeResolverInterface;
 
 public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceRegistry {
 
@@ -33,5 +41,9 @@ public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceReg
         registerPreference(NodeInterface.class, Node.class);
         registerPreference(ReaderInterface.class, Reader.class);
         registerPreference(ValueFinderInterface.class, ValueFinder.class);
+        registerPreference(ParserInterface.class, Parser.class);
+        registerPreference(ComponentFactoryInterface.class, ComponentFactory.class);
+        registerPreference(LayoutFactoryInterface.class, LayoutFactory.class);
+        registerPreference(TypeResolverInterface.class, TypeResolver.class);
     }
 }

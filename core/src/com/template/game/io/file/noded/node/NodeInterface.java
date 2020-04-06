@@ -1,5 +1,7 @@
 package com.template.game.io.file.noded.node;
 
+import java.util.Map;
+
 public interface NodeInterface {
 
     boolean hasValues();
@@ -17,4 +19,8 @@ public interface NodeInterface {
     NodeInterface getParentNode();
 
     void setParentNode(NodeInterface parentNode);
+
+    Map<String, NodeInterface> getNodes();
+
+    Map<String, String> getValues();
 }
