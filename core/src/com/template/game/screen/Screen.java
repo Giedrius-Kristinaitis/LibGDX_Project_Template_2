@@ -73,6 +73,7 @@ public class Screen extends ScreenAdapter implements ScreenInterface {
         // TODO: split rendering and updating responsibilities into two classes
         // TODO: register preferences, arguments, create ui template parsing from files
         // TODO: maybe refactor this class just a little bit
+        // TODO: refactor resource manager
     }
 
     @Override

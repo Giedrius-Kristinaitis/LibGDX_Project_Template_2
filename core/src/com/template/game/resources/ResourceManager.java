@@ -16,31 +16,14 @@ import java.util.Map;
 
 public class ResourceManager implements ResourceManagerInterface {
 
-    // asset manager to load, retrieve and dispose of assets
     private AssetManager assetManager;
-
-    // all of the texture atlases loaded by the asset manager
     private Map<String, TextureAtlas> textureAtlases = new HashMap<String, TextureAtlas>();
-
-    // all of the individual textures loaded by the asset manager
     private Map<String, Texture> textures = new HashMap<String, Texture>();
-
-    // all of the fonts loaded by the asset manager
     private Map<String, BitmapFont> fonts = new HashMap<String, BitmapFont>();
-
-    // all of the music files loaded by the asset manager
     private Map<String, Music> music = new HashMap<String, Music>();
-
-    // all of the short sound files loaded by the asset manager
     private Map<String, Sound> sounds = new HashMap<String, Sound>();
-
-    // all of the tiled maps loaded by the asset manager
     private Map<String, TiledMap> maps = new HashMap<String, TiledMap>();
-
-    // all of the skins loaded by the asset manager
     private Map<String, Skin> skins = new HashMap<String, Skin>();
-
-    // have all of the queued assets been loaded
     private boolean finishedLoading = false;
 
     public ResourceManager(AssetManager assetManager) {
@@ -228,63 +211,42 @@ public class ResourceManager implements ResourceManagerInterface {
         assetManager.dispose();
     }
 
-    /**
-     * Fills the tiled maps map with assets
-     */
     private void fillMapsMap() {
         for (String map : maps.keySet()) {
             maps.put(map, assetManager.get(map, TiledMap.class));
         }
     }
 
-    /**
-     * Fills the skins map with assets
-     */
     private void fillSkinsMap() {
         for (String skin : skins.keySet()) {
             skins.put(skin, assetManager.get(skin, Skin.class));
         }
     }
 
-    /**
-     * Fills the fonts map with assets
-     */
     private void fillFontMap() {
         for (String font : fonts.keySet()) {
             fonts.put(font, assetManager.get(font, BitmapFont.class));
         }
     }
 
-    /**
-     * Fills the music map with assets
-     */
     private void fillMusicMap() {
         for (String music : this.music.keySet()) {
             this.music.put(music, assetManager.get(music, Music.class));
         }
     }
 
-    /**
-     * Fills the sounds map with assets
-     */
     private void fillSoundMap() {
         for (String sound : sounds.keySet()) {
             sounds.put(sound, assetManager.get(sound, Sound.class));
         }
     }
 
-    /**
-     * Fills the textureAtlases map with assets
-     */
     private void fillTextureAtlasMap() {
         for (String textureAtlas : textureAtlases.keySet()) {
             textureAtlases.put(textureAtlas, assetManager.get(textureAtlas, TextureAtlas.class));
         }
     }
 
-    /**
-     * Fills textures map with assets
-     */
     private void fillTextureMap() {
         for (String texture : textures.keySet()) {
             textures.put(texture, assetManager.get(texture, Texture.class));
