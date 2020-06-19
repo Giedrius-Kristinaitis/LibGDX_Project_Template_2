@@ -38,6 +38,10 @@ public class ObjectManager implements ObjectManagerInterface {
 
     @Override
     public Object instantiate(Class clazz) {
+        if (clazz == ObjectManagerInterface.class || clazz == ObjectManager.class) {
+            return this;
+        }
+
         if (instantiatedObjects.containsKey(clazz)) {
             return instantiatedObjects.get(clazz);
         }
