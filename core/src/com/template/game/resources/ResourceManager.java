@@ -36,9 +36,9 @@ public class ResourceManager implements ResourceManagerInterface {
             return true;
         }
 
-        finishedLoading = assetManager.update();
+        if (assetManager.update()) {
+            finishedLoading = true;
 
-        if (finishedLoading) {
             fillTextureAtlasMap();
             fillTextureMap();
             fillFontMap();
@@ -46,9 +46,11 @@ public class ResourceManager implements ResourceManagerInterface {
             fillSoundMap();
             fillMapsMap();
             fillSkinsMap();
+
+            return true;
         }
 
-        return finishedLoading;
+        return false;
     }
 
     @Override
