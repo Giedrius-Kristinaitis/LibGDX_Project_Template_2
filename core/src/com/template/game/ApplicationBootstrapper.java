@@ -17,11 +17,11 @@ public class ApplicationBootstrapper extends Game implements ScreenApplierInterf
 
     @Override
     public void apply(ScreenInterface screen) {
-        if (!(screen instanceof Screen)) {
-            throw new IllegalArgumentException("Screen must implement com.badlogic.gdx.Screen");
+        if (screen == null) {
+            throw new IllegalArgumentException("Screen cannot be null");
         }
 
-        setScreen((Screen) screen);
+        setScreen(screen);
     }
 
     @Override

@@ -7,14 +7,18 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.istack.internal.NotNull;
 
-public class Screen extends ScreenAdapter implements ScreenInterface {
+public abstract class AbstractScreen extends ScreenAdapter implements ScreenInterface {
 
     private Viewport viewport;
 
     private Batch batch;
+
+    private ShapeRenderer shapeRenderer;
 
     private Stage stage;
 
@@ -22,29 +26,42 @@ public class Screen extends ScreenAdapter implements ScreenInterface {
 
     private boolean disposed;
 
-    public Screen(Viewport viewport, Batch batch, Stage stage, InputProcessor inputProcessor) {
+    public AbstractScreen(@NotNull Viewport viewport, @NotNull Batch batch, ShapeRenderer shapeRenderer, Stage stage, InputProcessor inputProcessor) {
         this.viewport = viewport;
         this.batch = batch;
+        this.shapeRenderer = shapeRenderer;
         this.stage = stage;
         this.inputProcessor = inputProcessor;
-
-        initialize();
     }
 
     @Override
     public void dispose() {
         disposed = true;
 
-        batch.dispose();
-        stage.dispose();
+        if (batch != null) {
+            batch.dispose();
+        }
+
+        if (stage != null) {
+            stage.dispose();
+        }
+
+        if (shapeRenderer != null) {
+            shapeRenderer.dispose();
+        }
     }
 
     @Override
     public InputProcessor getInputProcessor() {
         InputMultiplexer input = new InputMultiplexer();
 
-        input.addProcessor(stage);
-        input.addProcessor(inputProcessor);
+        if (stage != null) {
+            input.addProcessor(stage);
+        }
+
+        if (inputProcessor != null) {
+            input.addProcessor(inputProcessor);
+        }
 
         return input;
     }
@@ -54,8 +71,6 @@ public class Screen extends ScreenAdapter implements ScreenInterface {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        update(delta);
-
         if (disposed) {
             return;
         }
@@ -64,41 +79,38 @@ public class Screen extends ScreenAdapter implements ScreenInterface {
         viewport.getCamera().update();
         draw(batch, (OrthographicCamera) viewport.getCamera(), delta);
 
-        stage.getViewport().apply();
-        stage.act(delta);
-        stage.draw();
+        if (shapeRenderer != null) {
+            draw(shapeRenderer, (OrthographicCamera) viewport.getCamera(), delta);
+        }
 
+        if (stage != null) {
+            stage.getViewport().apply();
+            stage.act(delta);
+            stage.draw();
+        }
         // TODO: refactor method into two threads - renderer and updater (which will be optional)
         // TODO: create render queue, add shape renderer on top of the sprite batch
         // TODO: split rendering and updating responsibilities into two classes
         // TODO: maybe refactor this class just a little bit
         // TODO: refactor resource manager
-    }
-
-    @Override
-    public void draw(Batch batch, OrthographicCamera cam, float delta) {
-
-    }
-
-    @Override
-    public void update(float delta) {
-
+        // TODO: load resources for each screen individually (maybe)
     }
 
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-        stage.getViewport().update(width, height, true);
+
+        if (stage != null) {
+            stage.getViewport().update(width, height, true);
+        }
     }
 
     @Override
     public void show() {
         super.show();
 
-        // TODO: setup ui
-    }
-
-    private void initialize() {
-        viewport.apply(true);
+        if (stage != null) {
+            setupUI(stage);
+        }
     }
 }
