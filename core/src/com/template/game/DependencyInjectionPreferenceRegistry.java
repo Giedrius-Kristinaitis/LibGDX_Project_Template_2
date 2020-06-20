@@ -26,10 +26,7 @@ import com.template.game.screen.viewport.FillViewportFactory;
 import com.template.game.screen.viewport.ViewportFactoryInterface;
 import com.template.game.state.GameState;
 import com.template.game.state.GameStateInterface;
-import com.template.game.state.render.RendererCheckerInterface;
-import com.template.game.state.render.RendererComposite;
-import com.template.game.state.render.RendererInterface;
-import com.template.game.state.render.RendererProviderInterface;
+import com.template.game.state.render.*;
 
 public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceRegistry {
 
@@ -55,5 +52,6 @@ public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceReg
         registerPreference(ShapeRendererFactoryInterface.class, ShapeRendererFactory.class);
         registerPreference(StageFactoryInterface.class, StageFactory.class);
         registerPreference(ViewportFactoryInterface.class, FillViewportFactory.class);
+        registerPreference(GameStateRendererInterface.class, GameStateRenderer.class);
     }
 }
