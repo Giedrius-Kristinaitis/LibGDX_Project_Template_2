@@ -39,4 +39,11 @@ public class GameScreen extends AbstractScreen {
     public void setupUI(Stage stage) {
 
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+
+
+    }
 }
