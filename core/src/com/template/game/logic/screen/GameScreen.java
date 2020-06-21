@@ -11,6 +11,8 @@ import com.template.game.screen.stage.StageFactoryInterface;
 import com.template.game.screen.viewport.ViewportFactoryInterface;
 import com.template.game.state.GameStateInterface;
 import com.template.game.state.render.GameStateRendererInterface;
+import com.template.game.state.update.updatehandler.UpdateHandlerFactoryInterface;
+import com.template.game.state.update.updatehandler.UpdateHandlerInterface;
 
 public class GameScreen extends AbstractScreen {
 
@@ -18,11 +20,14 @@ public class GameScreen extends AbstractScreen {
 
     private GameStateRendererInterface gameStateRenderer;
 
-    public GameScreen(ViewportFactoryInterface viewportFactory, BatchFactoryInterface batchFactory, ShapeRendererFactoryInterface shapeRendererFactory, StageFactoryInterface stageFactory, GameStateInterface gameState, GameStateRendererInterface gameStateRenderer) {
+    private UpdateHandlerInterface updateHandler;
+
+    public GameScreen(ViewportFactoryInterface viewportFactory, BatchFactoryInterface batchFactory, ShapeRendererFactoryInterface shapeRendererFactory, StageFactoryInterface stageFactory, GameStateInterface gameState, GameStateRendererInterface gameStateRenderer, UpdateHandlerFactoryInterface updateHandlerFactory) {
         super(viewportFactory.create(), batchFactory.create(), shapeRendererFactory.create(), stageFactory.create(), null);
 
         this.gameState = gameState;
         this.gameStateRenderer = gameStateRenderer;
+        this.updateHandler = updateHandlerFactory.create(gameState);
     }
 
     @Override
@@ -36,14 +41,42 @@ public class GameScreen extends AbstractScreen {
     }
 
     @Override
+    public void update(double delta) {
+        updateHandler.update(delta);
+    }
+
+    @Override
     public void setupUI(Stage stage) {
 
     }
 
     @Override
+    public void pause() {
+        super.pause();
+        updateHandler.pause();
+    }
+
+    @Override
+    public void resume() {
+        super.resume();
+        updateHandler.resume();
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        updateHandler.start();
+    }
+
+    @Override
+    public void hide() {
+        super.hide();
+        updateHandler.stop();
+    }
+
+    @Override
     public void dispose() {
         super.dispose();
-
-
+        updateHandler.stop();
     }
 }

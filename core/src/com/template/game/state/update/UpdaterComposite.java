@@ -16,7 +16,7 @@ public class UpdaterComposite implements UpdaterInterface<Object>, UpdaterChecke
     }
 
     @Override
-    public void update(Object object, float delta) {
+    public void update(Object object, double delta) {
         updaters.get(object.getClass()).update(object.getClass().cast(object), delta);
     }
 }

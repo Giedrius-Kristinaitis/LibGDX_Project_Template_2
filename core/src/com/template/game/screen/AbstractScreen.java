@@ -71,6 +71,8 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        update((double) delta);
+
         if (disposed) {
             return;
         }
@@ -112,5 +114,10 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
         if (stage != null) {
             setupUI(stage);
         }
+    }
+
+    public void update(double delta) {
+        // some screens may implement this method to update on the rendering thread,
+        // not abstract, because it is not required to be implemented
     }
 }

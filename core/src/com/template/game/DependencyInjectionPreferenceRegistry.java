@@ -27,10 +27,11 @@ import com.template.game.screen.viewport.ViewportFactoryInterface;
 import com.template.game.state.GameState;
 import com.template.game.state.GameStateInterface;
 import com.template.game.state.render.*;
-import com.template.game.state.update.UpdaterCheckerInterface;
-import com.template.game.state.update.UpdaterComposite;
-import com.template.game.state.update.UpdaterInterface;
-import com.template.game.state.update.UpdaterProviderInterface;
+import com.template.game.state.update.*;
+import com.template.game.state.update.updatehandler.UpdateHandlerConfig;
+import com.template.game.state.update.updatehandler.UpdateHandlerConfigInterface;
+import com.template.game.state.update.updatehandler.UpdateHandlerFactory;
+import com.template.game.state.update.updatehandler.UpdateHandlerFactoryInterface;
 
 public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceRegistry {
 
@@ -60,5 +61,8 @@ public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceReg
         registerPreference(UpdaterCheckerInterface.class, UpdaterComposite.class);
         registerPreference(UpdaterInterface.class, UpdaterComposite.class);
         registerPreference(UpdaterProviderInterface.class, UpdaterRegistry.class);
+        registerPreference(GameStateUpdaterInterface.class, GameStateUpdater.class);
+        registerPreference(UpdateHandlerFactoryInterface.class, UpdateHandlerFactory.class);
+        registerPreference(UpdateHandlerConfigInterface.class, UpdateHandlerConfig.class);
     }
 }
