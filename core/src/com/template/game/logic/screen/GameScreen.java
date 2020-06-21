@@ -31,12 +31,12 @@ public class GameScreen extends AbstractScreen {
     }
 
     @Override
-    public void draw(Batch batch, OrthographicCamera cam, float delta) {
+    public void draw(Batch batch, OrthographicCamera cam, double delta) {
         gameStateRenderer.render(batch, gameState);
     }
 
     @Override
-    public void draw(ShapeRenderer shapeRenderer, OrthographicCamera cam, float delta) {
+    public void draw(ShapeRenderer shapeRenderer, OrthographicCamera cam, double delta) {
         gameStateRenderer.render(shapeRenderer, gameState);
     }
 

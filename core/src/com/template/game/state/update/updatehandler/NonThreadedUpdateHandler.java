@@ -15,22 +15,22 @@ public class NonThreadedUpdateHandler implements UpdateHandlerInterface {
 
     @Override
     public void start() {
-        // nothing to do here, because it runs on the main thread
+
     }
 
     @Override
     public void pause() {
-        // nothing to do here, because it runs on the main thread
+
     }
 
     @Override
     public void resume() {
-        // nothing to do here, because it runs on the main thread
+
     }
 
     @Override
     public void stop() {
-        // nothing to do here, because it runs on the main thread
+
     }
 
     @Override

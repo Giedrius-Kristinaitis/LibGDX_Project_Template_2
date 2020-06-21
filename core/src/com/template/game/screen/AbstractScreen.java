@@ -79,10 +79,10 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
 
         viewport.apply(true);
         viewport.getCamera().update();
-        draw(batch, (OrthographicCamera) viewport.getCamera(), delta);
+        draw(batch, (OrthographicCamera) viewport.getCamera(), (double) delta);
 
         if (shapeRenderer != null) {
-            draw(shapeRenderer, (OrthographicCamera) viewport.getCamera(), delta);
+            draw(shapeRenderer, (OrthographicCamera) viewport.getCamera(), (double) delta);
         }
 
         if (stage != null) {
@@ -117,7 +117,17 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
     }
 
     public void update(double delta) {
-        // some screens may implement this method to update on the rendering thread,
-        // not abstract, because it is not required to be implemented
+    }
+
+    @Override
+    public void draw(Batch batch, OrthographicCamera cam, double delta) {
+    }
+
+    @Override
+    public void draw(ShapeRenderer shapeRenderer, OrthographicCamera cam, double delta) {
+    }
+
+    @Override
+    public void setupUI(Stage stage) {
     }
 }
