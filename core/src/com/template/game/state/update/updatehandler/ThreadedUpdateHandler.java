@@ -51,6 +51,7 @@ public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
     @Override
     public void run() {
         // TODO: create game loop
+        // TODO: refactor update handler to eliminate empty methods
         //gameStateUpdater.update(state);
     }
 }

@@ -1,7 +1,6 @@
 package com.template.game;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Screen;
 import com.di.ObjectManager;
 import com.di.ObjectManagerInterface;
 import com.template.game.screen.ScreenApplierInterface;
@@ -10,10 +9,6 @@ import com.template.game.screen.ScreenInterface;
 public class ApplicationBootstrapper extends Game implements ScreenApplierInterface {
 
     private GameInterface game;
-
-    public ApplicationBootstrapper() {
-        bootstrap();
-    }
 
     @Override
     public void apply(ScreenInterface screen) {
@@ -26,7 +21,7 @@ public class ApplicationBootstrapper extends Game implements ScreenApplierInterf
 
     @Override
     public void create() {
-        // required method, but no logic goes here for now
+        bootstrap();
     }
 
     @Override
