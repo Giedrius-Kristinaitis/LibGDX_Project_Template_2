@@ -38,9 +38,7 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
     public void dispose() {
         disposed = true;
 
-        if (batch != null) {
-            batch.dispose();
-        }
+        batch.dispose();
 
         if (stage != null) {
             stage.dispose();
@@ -71,25 +69,16 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        update((double) delta);
+        performUpdates(delta);
 
         if (disposed) {
             return;
         }
 
-        viewport.apply(true);
-        viewport.getCamera().update();
-        draw(batch, (OrthographicCamera) viewport.getCamera(), (double) delta);
-
-        if (shapeRenderer != null) {
-            draw(shapeRenderer, (OrthographicCamera) viewport.getCamera(), (double) delta);
-        }
-
-        if (stage != null) {
-            stage.getViewport().apply();
-            stage.act(delta);
-            stage.draw();
-        }
+        drawToBatch();
+        drawToShapeRenderer();
+        drawToStage();
+        
         // TODO: refactor method into two threads - renderer and updater (which will be optional)
         // TODO: create render queue, add shape renderer on top of the sprite batch
         // TODO: split rendering and updating responsibilities into two classes
@@ -116,18 +105,47 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
         }
     }
 
+    @Override
     public void update(double delta) {
     }
 
     @Override
-    public void draw(Batch batch, OrthographicCamera cam, double delta) {
+    public void draw(Batch batch, OrthographicCamera cam) {
     }
 
     @Override
-    public void draw(ShapeRenderer shapeRenderer, OrthographicCamera cam, double delta) {
+    public void draw(ShapeRenderer shapeRenderer, OrthographicCamera cam) {
     }
 
     @Override
     public void setupUI(Stage stage) {
+    }
+
+    private void performUpdates(float delta) {
+        update((double) delta);
+        stage.act(delta);
+    }
+
+    private void drawToBatch() {
+        viewport.apply(true);
+        viewport.getCamera().update();
+        draw(batch, (OrthographicCamera) viewport.getCamera());
+    }
+
+    private void drawToShapeRenderer() {
+        if (shapeRenderer == null) {
+            return;
+        }
+
+        draw(shapeRenderer, (OrthographicCamera) viewport.getCamera());
+    }
+
+    private void drawToStage() {
+        if (stage == null) {
+            return;
+        }
+
+        stage.getViewport().apply();
+        stage.draw();
     }
 }

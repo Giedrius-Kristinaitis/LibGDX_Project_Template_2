@@ -9,9 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public interface ScreenInterface extends Screen {
 
-    void draw(Batch batch, OrthographicCamera cam, double delta);
+    void draw(Batch batch, OrthographicCamera cam);
 
-    void draw(ShapeRenderer shapeRenderer, OrthographicCamera cam, double delta);
+    void draw(ShapeRenderer shapeRenderer, OrthographicCamera cam);
+
+    void update(double delta);
 
     void setupUI(Stage stage);
 

@@ -13,7 +13,7 @@ public class LoadingScreen extends AbstractScreen {
     }
 
     @Override
-    public void draw(Batch batch, OrthographicCamera cam, double delta) {
+    public void draw(Batch batch, OrthographicCamera cam) {
 
     }
 }
