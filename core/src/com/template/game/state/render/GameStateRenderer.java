@@ -8,8 +8,11 @@ public class GameStateRenderer implements GameStateRendererInterface {
 
     private RendererInterface<Object> renderer;
 
-    public GameStateRenderer(RendererInterface<Object> renderer) {
+    private RendererCheckerInterface rendererChecker;
+
+    public GameStateRenderer(RendererInterface<Object> renderer, RendererCheckerInterface rendererChecker) {
         this.renderer = renderer;
+        this.rendererChecker = rendererChecker;
     }
 
     @Override
@@ -17,6 +20,10 @@ public class GameStateRenderer implements GameStateRendererInterface {
         Iterable<Object> renderables = state.getRenderables();
 
         for (Object renderable : renderables) {
+            if (!rendererChecker.hasRendererFor(renderable.getClass())) {
+                continue;
+            }
+
             renderer.render(batch, renderable);
         }
     }
@@ -26,6 +33,10 @@ public class GameStateRenderer implements GameStateRendererInterface {
         Iterable<Object> renderables = state.getRenderables();
 
         for (Object renderable : renderables) {
+            if (!this.rendererChecker.hasRendererFor(renderable.getClass())) {
+                continue;
+            }
+
             renderer.render(shapeRenderer, renderable);
         }
     }

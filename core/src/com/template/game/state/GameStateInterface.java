@@ -6,5 +6,7 @@ public interface GameStateInterface {
 
     void removeObject(Object object);
 
+    Iterable<Object> getObjects();
+
     Iterable<Object> getRenderables();
 }

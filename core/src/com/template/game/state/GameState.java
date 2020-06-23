@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class GameState implements GameStateInterface {
 
-    private final Map<Integer, Object> state = new HashMap<Integer, Object>();
+    private final Map<Integer, Object> stateObjects = new HashMap<Integer, Object>();
     private final Map<Integer, Object> renderables = new HashMap<Integer, Object>();
     private RendererCheckerInterface rendererChecker;
 
@@ -18,7 +18,7 @@ public class GameState implements GameStateInterface {
     @Override
     public void insertObject(Object object) {
         synchronized (this) {
-            state.put(object.hashCode(), object);
+            stateObjects.put(object.hashCode(), object);
 
             if (!rendererChecker.hasRendererFor(object)) {
                 return;
@@ -31,8 +31,15 @@ public class GameState implements GameStateInterface {
     @Override
     public void removeObject(Object object) {
         synchronized (this) {
-            state.remove(object.hashCode());
+            stateObjects.remove(object.hashCode());
             renderables.remove(object.hashCode());
+        }
+    }
+
+    @Override
+    public Iterable<Object> getObjects() {
+        synchronized (this) {
+            return stateObjects.values();
         }
     }
 
