@@ -94,7 +94,7 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
         // TODO: create render queue, add shape renderer on top of the sprite batch
         // TODO: split rendering and updating responsibilities into two classes
         // TODO: maybe refactor this class just a little bit
-        // TODO: refactor resource manager
+        // TODO: refactor resource manager (and remove redundant comments)
         // TODO: load resources for each screen individually (maybe)
     }
 

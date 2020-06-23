@@ -64,5 +64,6 @@ public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceReg
         registerPreference(GameStateUpdaterInterface.class, GameStateUpdater.class);
         registerPreference(UpdateHandlerFactoryInterface.class, UpdateHandlerFactory.class);
         registerPreference(UpdateHandlerConfigInterface.class, UpdateHandlerConfig.class);
+        registerPreference(PerformanceConfigInterface.class, PerformanceConfig.class);
     }
 }

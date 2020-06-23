@@ -9,32 +9,38 @@ public class NonThreadedUpdateHandler implements UpdateHandlerInterface {
 
     private GameStateUpdaterInterface gameStateUpdater;
 
+    private boolean paused;
+
     public NonThreadedUpdateHandler(GameStateUpdaterInterface gameStateUpdater) {
         this.gameStateUpdater = gameStateUpdater;
     }
 
     @Override
     public void start() {
-
+        paused = false;
     }
 
     @Override
     public void pause() {
-
+        paused = true;
     }
 
     @Override
     public void resume() {
-
+        paused = false;
     }
 
     @Override
     public void stop() {
-
+        paused = true;
     }
 
     @Override
     public void update(double delta) {
+        if (paused) {
+            return;
+        }
+        
         gameStateUpdater.update(delta, state);
     }
 
