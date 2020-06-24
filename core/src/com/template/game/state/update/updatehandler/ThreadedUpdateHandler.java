@@ -1,8 +1,10 @@
 package com.template.game.state.update.updatehandler;
 
+import com.di.annotation.Parameters;
 import com.template.game.PerformanceConfigInterface;
 import com.template.game.state.GameStateInterface;
 import com.template.game.state.update.GameStateUpdaterInterface;
+import com.template.game.state.update.updatehandler.threading.RunnableQueueInterface;
 
 public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
 
@@ -14,12 +16,16 @@ public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
 
     private Thread updaterThread;
 
+    private RunnableQueueInterface runnableQueue;
+
     private volatile boolean needsTermination;
     private volatile boolean paused;
 
-    public ThreadedUpdateHandler(GameStateUpdaterInterface gameStateUpdater, PerformanceConfigInterface config) {
+    @Parameters({"gameStateUpdater", "config", "runnableQueue"})
+    public ThreadedUpdateHandler(GameStateUpdaterInterface gameStateUpdater, PerformanceConfigInterface config, RunnableQueueInterface runnableQueue) {
         this.gameStateUpdater = gameStateUpdater;
         this.config = config;
+        this.runnableQueue = runnableQueue;
     }
 
     @Override
@@ -57,6 +63,7 @@ public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
     @Override
     public void update(double delta) {
         // only the logic that needs to be executed on the main thread goes here
+        runnableQueue.executeRunnables();
     }
 
     @Override
@@ -67,10 +74,6 @@ public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
     @Override
     public void run() {
         executeUpdateLoop();
-    }
-
-    private void executeUpdateTick(double millisecondsSinceLastUpdate) {
-        gameStateUpdater.update(millisecondsSinceLastUpdate, state);
     }
 
     private void executeUpdateLoop() {
@@ -89,6 +92,10 @@ public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
             executeUpdateTick((updateLoop.currentTimeInNanoseconds - updateLoop.lastUpdateTimeInNanoseconds) / 1000D);
             updateLoop.decrementDeltaValue();
         }
+    }
+
+    private void executeUpdateTick(double millisecondsSinceLastUpdate) {
+        gameStateUpdater.update(millisecondsSinceLastUpdate, state);
     }
 
     private void waitIfPaused() {
