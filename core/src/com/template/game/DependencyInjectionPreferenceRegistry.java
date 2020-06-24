@@ -33,7 +33,7 @@ import com.template.game.state.update.updatehandler.UpdateHandlerConfigInterface
 import com.template.game.state.update.updatehandler.UpdateHandlerFactory;
 import com.template.game.state.update.updatehandler.UpdateHandlerFactoryInterface;
 import com.template.game.state.update.updatehandler.threading.MainThreadRunnableQueue;
-import com.template.game.state.update.updatehandler.threading.RunnableQueueInterface;
+import com.template.game.state.update.updatehandler.threading.MainThreadRunnableQueueInterface;
 
 public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceRegistry {
 
@@ -67,6 +67,6 @@ public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceReg
         registerPreference(UpdateHandlerFactoryInterface.class, UpdateHandlerFactory.class);
         registerPreference(UpdateHandlerConfigInterface.class, UpdateHandlerConfig.class);
         registerPreference(PerformanceConfigInterface.class, PerformanceConfig.class);
-        registerPreference(RunnableQueueInterface.class, MainThreadRunnableQueue.class);
+        registerPreference(MainThreadRunnableQueueInterface.class, MainThreadRunnableQueue.class);
     }
 }

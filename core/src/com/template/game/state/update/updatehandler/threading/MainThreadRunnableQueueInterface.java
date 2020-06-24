@@ -1,6 +1,6 @@
 package com.template.game.state.update.updatehandler.threading;
 
-public interface RunnableQueueInterface {
+public interface MainThreadRunnableQueueInterface {
 
     void addOneTimeRunnable(Runnable runnable);
 

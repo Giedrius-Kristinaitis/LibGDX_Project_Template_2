@@ -4,7 +4,7 @@ import com.di.annotation.Parameters;
 import com.template.game.PerformanceConfigInterface;
 import com.template.game.state.GameStateInterface;
 import com.template.game.state.update.GameStateUpdaterInterface;
-import com.template.game.state.update.updatehandler.threading.RunnableQueueInterface;
+import com.template.game.state.update.updatehandler.threading.MainThreadRunnableQueueInterface;
 
 public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
 
@@ -16,13 +16,13 @@ public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
 
     private Thread updaterThread;
 
-    private RunnableQueueInterface runnableQueue;
+    private MainThreadRunnableQueueInterface runnableQueue;
 
     private volatile boolean needsTermination;
     private volatile boolean paused;
 
     @Parameters({"gameStateUpdater", "config", "runnableQueue"})
-    public ThreadedUpdateHandler(GameStateUpdaterInterface gameStateUpdater, PerformanceConfigInterface config, RunnableQueueInterface runnableQueue) {
+    public ThreadedUpdateHandler(GameStateUpdaterInterface gameStateUpdater, PerformanceConfigInterface config, MainThreadRunnableQueueInterface runnableQueue) {
         this.gameStateUpdater = gameStateUpdater;
         this.config = config;
         this.runnableQueue = runnableQueue;

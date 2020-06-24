@@ -3,7 +3,7 @@ package com.template.game.state.update.updatehandler.threading;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainThreadRunnableQueue implements RunnableQueueInterface {
+public class MainThreadRunnableQueue implements MainThreadRunnableQueueInterface {
 
     private final List<Runnable> oneTimeRunnables = new ArrayList<Runnable>();
     private final List<Runnable> permanentRunnables = new ArrayList<Runnable>();
