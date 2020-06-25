@@ -9,6 +9,8 @@ import com.template.game.io.file.noded.node.Node;
 import com.template.game.io.file.noded.node.NodeInterface;
 import com.template.game.io.file.noded.node.ValueFinder;
 import com.template.game.io.file.noded.node.ValueFinderInterface;
+import com.template.game.logic.WorldConfig;
+import com.template.game.logic.WorldConfigInterface;
 import com.template.game.resources.ResourceManager;
 import com.template.game.resources.ResourceManagerInterface;
 import com.template.game.screen.*;
@@ -62,5 +64,6 @@ public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceReg
         registerPreference(UpdateHandlerConfigInterface.class, UpdateHandlerConfig.class);
         registerPreference(PerformanceConfigInterface.class, PerformanceConfig.class);
         registerPreference(MainThreadRunnableQueueInterface.class, MainThreadRunnableQueue.class);
+        registerPreference(WorldConfigInterface.class, WorldConfig.class);
     }
 }

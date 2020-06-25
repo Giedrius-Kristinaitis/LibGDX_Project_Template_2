@@ -3,7 +3,6 @@ package com.template.game.config;
 import com.di.annotation.Parameters;
 import com.template.game.io.file.noded.ReaderInterface;
 import com.template.game.io.file.noded.node.NodeInterface;
-import com.template.game.io.file.noded.node.ValueFinder;
 import com.template.game.io.file.noded.node.ValueFinderInterface;
 
 public class ConfigValueProvider implements ConfigValueProviderInterface {
@@ -24,7 +23,13 @@ public class ConfigValueProvider implements ConfigValueProviderInterface {
             return null;
         }
 
-        return valueFinder.findValue(path, rootNode);
+        String value = valueFinder.findValue(path, rootNode);
+
+        if (value == null) {
+            throw new RuntimeException("Config path '" + path + "' not found");
+        }
+
+        return value;
     }
 
     private void initialize(String fileName, ReaderInterface fileReader) {
