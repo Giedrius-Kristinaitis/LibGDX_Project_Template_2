@@ -7,6 +7,8 @@ import com.template.game.io.file.noded.Reader;
 import com.template.game.io.file.noded.ReaderInterface;
 import com.template.game.io.file.noded.node.Node;
 import com.template.game.io.file.noded.node.NodeInterface;
+import com.template.game.io.file.noded.node.ValueFinder;
+import com.template.game.io.file.noded.node.ValueFinderInterface;
 import com.template.game.resources.ResourceManager;
 import com.template.game.resources.ResourceManagerInterface;
 import com.template.game.screen.*;
@@ -41,6 +43,7 @@ public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceReg
         registerPreference(ScreenSwitcherInterface.class, ScreenSwitcher.class);
         registerPreference(ConfigValueProviderInterface.class, ConfigValueProvider.class);
         registerPreference(NodeInterface.class, Node.class);
+        registerPreference(ValueFinderInterface.class, ValueFinder.class);
         registerPreference(ReaderInterface.class, Reader.class);
         registerPreference(RendererCheckerInterface.class, RendererComposite.class);
         registerPreference(RendererInterface.class, RendererComposite.class);
