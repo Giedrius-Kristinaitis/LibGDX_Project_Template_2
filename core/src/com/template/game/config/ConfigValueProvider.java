@@ -7,20 +7,22 @@ import com.template.game.io.file.noded.node.ValueFinderInterface;
 
 public class ConfigValueProvider implements ConfigValueProviderInterface {
 
+    private String configFileName;
     private NodeInterface rootNode;
     private ValueFinderInterface valueFinder;
+    private ReaderInterface fileReader;
 
     @Parameters({"configFileName", "fileReader", "valueFinder"})
     public ConfigValueProvider(String configFileName, ReaderInterface fileReader, ValueFinderInterface valueFinder) {
+        this.configFileName = configFileName;
         this.valueFinder = valueFinder;
-
-        initialize(configFileName, fileReader);
+        this.fileReader = fileReader;
     }
 
     @Override
     public String getConfigValue(String path) {
         if (rootNode == null) {
-            return null;
+            initialize();
         }
 
         String value = valueFinder.findValue(path, rootNode);
@@ -32,7 +34,13 @@ public class ConfigValueProvider implements ConfigValueProviderInterface {
         return value;
     }
 
-    private void initialize(String fileName, ReaderInterface fileReader) {
-        rootNode = fileReader.readFile(fileName);
+    private void initialize() {
+        rootNode = fileReader.readFile(configFileName);
+
+        if (rootNode != null) {
+            return;
+        }
+
+        throw new RuntimeException("Invalid config file structure");
     }
 }
