@@ -10,13 +10,13 @@ public class ConfigValueProvider implements ConfigValueProviderInterface {
     private String configFileName;
     private NodeInterface rootNode;
     private ValueFinderInterface valueFinder;
-    private ReaderInterface fileReader;
+    private ReaderInterface inputReader;
 
     @Parameters({"configFileName", "fileReader", "valueFinder"})
-    public ConfigValueProvider(String configFileName, ReaderInterface fileReader, ValueFinderInterface valueFinder) {
+    public ConfigValueProvider(String configFileName, ReaderInterface inputReader, ValueFinderInterface valueFinder) {
         this.configFileName = configFileName;
         this.valueFinder = valueFinder;
-        this.fileReader = fileReader;
+        this.inputReader = inputReader;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ConfigValueProvider implements ConfigValueProviderInterface {
     }
 
     private void initialize() {
-        rootNode = fileReader.readFile(configFileName);
+        rootNode = inputReader.read(configFileName);
 
         if (rootNode != null) {
             return;

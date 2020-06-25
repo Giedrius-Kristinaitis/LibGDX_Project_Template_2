@@ -31,16 +31,16 @@ public class Reader implements ReaderInterface {
     }
 
     @Override
-    public NodeInterface readFile(String file) {
+    public NodeInterface read(String inputSource) {
         try {
-            return getRootNode(file);
+            return getRootNode(inputSource);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    private NodeInterface getRootNode(String fileName) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputConverter.convert(fileName)));
+    private NodeInterface getRootNode(String inputSource) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputConverter.convert(inputSource)));
         NodeInterface root = new Node();
         NodeInterface currentNode = root;
         int previousIndentationLevel = 0;
