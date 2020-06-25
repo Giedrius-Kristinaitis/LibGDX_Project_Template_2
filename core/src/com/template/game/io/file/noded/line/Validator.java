@@ -1,8 +1,7 @@
 package com.template.game.io.file.noded.line;
 
-public class Validator implements ValidatorInterface {
+public class Validator {
 
-    @Override
     public boolean validate(String line, String delimiter) {
         if (line == null || line.isEmpty()) {
             return false;

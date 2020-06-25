@@ -1,8 +1,7 @@
 package com.template.game.io.file.noded.line;
 
-public class IndentationCalculator implements CalculatorInterface {
+public class IndentationCalculator {
 
-    @Override
     public int getLineIndentationLevel(String line) {
         int spaceCount = 0;
 

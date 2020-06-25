@@ -7,19 +7,18 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArgumentResolver implements ResolverInterface<Constructor<?>, Object[]> {
+public class ArgumentResolver {
 
     private final ObjectManagerInterface objectManager;
     private final ArgumentRegistryInterface argumentRegistry;
-    private final ResolverInterface<Constructor<?>, String[]> parameterNameResolver;
+    private final ParameterNameResolver parameterNameResolver;
 
-    public ArgumentResolver(ObjectManagerInterface objectManager, ArgumentRegistryInterface argumentRegistry, ResolverInterface<Constructor<?>, String[]> parameterNameResolver) {
+    public ArgumentResolver(ObjectManagerInterface objectManager, ArgumentRegistryInterface argumentRegistry, ParameterNameResolver parameterNameResolver) {
         this.objectManager = objectManager;
         this.argumentRegistry = argumentRegistry;
         this.parameterNameResolver = parameterNameResolver;
     }
-
-    @Override
+    
     public Object[] resolve(Constructor<?> constructor) {
         List<Object> arguments = new ArrayList<Object>();
         Class<?>[] parameterTypes = constructor.getParameterTypes();

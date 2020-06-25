@@ -1,8 +1,7 @@
 package com.template.game.io.file.noded.line;
 
-public class Trimmer implements TrimmerInterface {
+public class Trimmer {
 
-    @Override
     public String trim(String line, String commentSymbol) {
         String trimmed = line.trim();
 

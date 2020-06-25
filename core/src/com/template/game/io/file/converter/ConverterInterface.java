@@ -4,5 +4,5 @@ import java.io.InputStream;
 
 public interface ConverterInterface {
 
-    InputStream convert(String file);
+    InputStream convert(String inputSource);
 }

@@ -6,7 +6,6 @@ import com.di.registry.PreferenceRegistryInterface;
 import com.di.resolver.ArgumentResolver;
 import com.di.resolver.ConstructorResolver;
 import com.di.resolver.ParameterNameResolver;
-import com.di.resolver.ResolverInterface;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
@@ -17,9 +16,9 @@ public class ObjectManager implements ObjectManagerInterface {
 
     private final PreferenceRegistryInterface preferenceRegistry;
     private final ArgumentRegistryInterface argumentRegistry;
-    private final ResolverInterface<Class, Constructor<?>> constructorResolver;
-    private final ResolverInterface<Constructor<?>, Object[]> argumentResolver;
-    private final ResolverInterface<Constructor<?>, String[]> parameterNameResolver;
+    private final ConstructorResolver constructorResolver;
+    private final ArgumentResolver argumentResolver;
+    private final ParameterNameResolver parameterNameResolver;
     private final Map<Class, Object> instantiatedObjects;
 
     public ObjectManager(PreferenceRegistryInterface preferenceRegistry) {
