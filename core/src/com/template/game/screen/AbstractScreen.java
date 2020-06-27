@@ -79,8 +79,7 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
         drawToShapeRenderer();
         drawToStage();
 
-        // TODO: refactor method into two threads - renderer and updater (which will be optional)
-        // TODO: create render queue, add shape renderer on top of the sprite batch
+        // TODO: create render queue, add shape renderer on top of the sprite batch (maybe)
         // TODO: split rendering and updating responsibilities into two classes
         // TODO: refactor resource manager (and remove redundant comments)
         // TODO: load resources for each screen individually (maybe)

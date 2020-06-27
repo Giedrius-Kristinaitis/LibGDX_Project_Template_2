@@ -9,35 +9,35 @@ import com.template.game.screen.batch.BatchFactoryInterface;
 import com.template.game.screen.shaperenderer.ShapeRendererFactoryInterface;
 import com.template.game.screen.stage.StageFactoryInterface;
 import com.template.game.screen.viewport.ViewportFactoryInterface;
-import com.template.game.state.GameStateInterface;
+import com.template.game.state.GameStateProviderInterface;
 import com.template.game.state.render.GameStateRendererInterface;
 import com.template.game.state.update.updatehandler.UpdateHandlerFactoryInterface;
 import com.template.game.state.update.updatehandler.UpdateHandlerInterface;
 
 public class GameScreen extends AbstractScreen {
 
-    private GameStateInterface gameState;
+    private GameStateProviderInterface gameStateProvider;
 
     private GameStateRendererInterface gameStateRenderer;
 
     private UpdateHandlerInterface updateHandler;
 
-    public GameScreen(ViewportFactoryInterface viewportFactory, BatchFactoryInterface batchFactory, ShapeRendererFactoryInterface shapeRendererFactory, StageFactoryInterface stageFactory, GameStateInterface gameState, GameStateRendererInterface gameStateRenderer, UpdateHandlerFactoryInterface updateHandlerFactory) {
+    public GameScreen(ViewportFactoryInterface viewportFactory, BatchFactoryInterface batchFactory, ShapeRendererFactoryInterface shapeRendererFactory, StageFactoryInterface stageFactory, GameStateProviderInterface gameStateProvider, GameStateRendererInterface gameStateRenderer, UpdateHandlerFactoryInterface updateHandlerFactory) {
         super(viewportFactory.create(), batchFactory.create(), shapeRendererFactory.create(), stageFactory.create(), null);
 
-        this.gameState = gameState;
+        this.gameStateProvider = gameStateProvider;
         this.gameStateRenderer = gameStateRenderer;
-        this.updateHandler = updateHandlerFactory.create(gameState);
+        this.updateHandler = updateHandlerFactory.create(gameStateProvider.getGameState());
     }
 
     @Override
     public void draw(Batch batch, OrthographicCamera cam) {
-        gameStateRenderer.render(batch, gameState);
+        gameStateRenderer.render(batch, gameStateProvider.getGameState());
     }
 
     @Override
     public void draw(ShapeRenderer shapeRenderer, OrthographicCamera cam) {
-        gameStateRenderer.render(shapeRenderer, gameState);
+        gameStateRenderer.render(shapeRenderer, gameStateProvider.getGameState());
     }
 
     @Override
