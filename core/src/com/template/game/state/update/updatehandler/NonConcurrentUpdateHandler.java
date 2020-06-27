@@ -3,7 +3,7 @@ package com.template.game.state.update.updatehandler;
 import com.template.game.state.GameStateInterface;
 import com.template.game.state.update.GameStateUpdaterInterface;
 
-public class NonThreadedUpdateHandler implements UpdateHandlerInterface {
+public class NonConcurrentUpdateHandler implements UpdateHandlerInterface {
 
     private GameStateInterface state;
 
@@ -11,7 +11,7 @@ public class NonThreadedUpdateHandler implements UpdateHandlerInterface {
 
     private boolean paused;
 
-    public NonThreadedUpdateHandler(GameStateUpdaterInterface gameStateUpdater) {
+    public NonConcurrentUpdateHandler(GameStateUpdaterInterface gameStateUpdater) {
         this.gameStateUpdater = gameStateUpdater;
     }
 

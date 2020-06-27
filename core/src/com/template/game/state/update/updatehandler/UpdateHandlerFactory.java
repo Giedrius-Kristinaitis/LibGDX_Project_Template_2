@@ -19,9 +19,9 @@ public class UpdateHandlerFactory implements UpdateHandlerFactoryInterface {
         UpdateHandlerInterface handler = null;
 
         if (config.isUpdaterThreadEnabled()) {
-            handler = (UpdateHandlerInterface) objectManager.instantiate(ThreadedUpdateHandler.class);
+            handler = (UpdateHandlerInterface) objectManager.instantiate(ConcurrentUpdateHandler.class);
         } else {
-            handler = (UpdateHandlerInterface) objectManager.instantiate(NonThreadedUpdateHandler.class);
+            handler = (UpdateHandlerInterface) objectManager.instantiate(NonConcurrentUpdateHandler.class);
         }
 
         handler.setGameState(state);

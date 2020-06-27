@@ -6,7 +6,7 @@ import com.template.game.state.GameStateInterface;
 import com.template.game.state.update.GameStateUpdaterInterface;
 import com.template.game.state.update.updatehandler.threading.MainThreadRunnableQueueInterface;
 
-public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
+public class ConcurrentUpdateHandler implements UpdateHandlerInterface, Runnable {
 
     private GameStateInterface state;
 
@@ -22,7 +22,7 @@ public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
     private volatile boolean paused;
 
     @Parameters({"gameStateUpdater", "config", "runnableQueue"})
-    public ThreadedUpdateHandler(GameStateUpdaterInterface gameStateUpdater, PerformanceConfigInterface config, MainThreadRunnableQueueInterface runnableQueue) {
+    public ConcurrentUpdateHandler(GameStateUpdaterInterface gameStateUpdater, PerformanceConfigInterface config, MainThreadRunnableQueueInterface runnableQueue) {
         this.gameStateUpdater = gameStateUpdater;
         this.config = config;
         this.runnableQueue = runnableQueue;
