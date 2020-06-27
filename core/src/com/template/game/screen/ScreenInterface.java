@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public interface ScreenInterface extends Screen {
+public interface ScreenInterface {
 
     void draw(Batch batch, OrthographicCamera cam);
 
@@ -18,4 +18,6 @@ public interface ScreenInterface extends Screen {
     void setupUI(Stage stage);
 
     InputProcessor getInputProcessor();
+
+    Screen toLibGDXScreen();
 }

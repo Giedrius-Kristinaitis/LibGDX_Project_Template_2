@@ -1,9 +1,6 @@
 package com.template.game.screen;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -101,6 +98,11 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
         if (stage != null) {
             setupUI(stage);
         }
+    }
+
+    @Override
+    public Screen toLibGDXScreen() {
+        return this;
     }
 
     @Override
