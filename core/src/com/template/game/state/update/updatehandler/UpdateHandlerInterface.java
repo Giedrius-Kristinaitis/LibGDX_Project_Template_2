@@ -12,7 +12,7 @@ public interface UpdateHandlerInterface {
 
     void stop();
 
-    void update(double delta);
+    void updateOnMainThread(double delta);
 
     void setGameState(GameStateInterface state);
 }

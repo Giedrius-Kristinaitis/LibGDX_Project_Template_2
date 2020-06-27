@@ -61,8 +61,7 @@ public class ThreadedUpdateHandler implements UpdateHandlerInterface, Runnable {
     }
 
     @Override
-    public void update(double delta) {
-        // this is executed on the main thread
+    public void updateOnMainThread(double delta) {
         runnableQueue.executeRunnables();
     }
 

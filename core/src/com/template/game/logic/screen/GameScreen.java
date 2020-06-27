@@ -42,7 +42,7 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void update(double delta) {
-        updateHandler.update(delta);
+        updateHandler.updateOnMainThread(delta);
     }
 
     @Override

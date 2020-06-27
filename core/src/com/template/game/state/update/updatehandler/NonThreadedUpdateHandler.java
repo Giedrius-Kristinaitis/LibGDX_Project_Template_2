@@ -36,7 +36,7 @@ public class NonThreadedUpdateHandler implements UpdateHandlerInterface {
     }
 
     @Override
-    public void update(double delta) {
+    public void updateOnMainThread(double delta) {
         if (paused) {
             return;
         }
