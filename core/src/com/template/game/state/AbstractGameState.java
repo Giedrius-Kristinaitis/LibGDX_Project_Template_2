@@ -1,50 +1,50 @@
 package com.template.game.state;
 
-import com.template.game.state.render.RendererCheckerInterface;
+import com.template.game.state.update.UpdatableInterface;
 
 import java.util.Map;
 
 public abstract class AbstractGameState implements GameStateInterface {
 
-    private Map<Integer, Object> stateObjects;
-    private Map<Integer, Object> renderables;
-    private RendererCheckerInterface rendererChecker;
+    private Map<Integer, UpdatableInterface> updatables;
+    private Map<Integer, Object> objectsToRender;
 
-    public AbstractGameState(RendererCheckerInterface rendererChecker) {
-        this.rendererChecker = rendererChecker;
-
-        stateObjects = getStateObjectsMap();
-        renderables = getRenderablesMap();
+    public AbstractGameState() {
+        updatables = getMapForUpdatableObjects();
+        objectsToRender = getMapForObjectsToRender();
     }
 
     @Override
-    public void insertObject(Object object) {
-        stateObjects.put(object.hashCode(), object);
-
-        if (!rendererChecker.hasRendererFor(object)) {
-            return;
-        }
-
-        renderables.put(object.hashCode(), object);
+    public void insertUpdatable(UpdatableInterface updatable) {
+        updatables.put(updatable.hashCode(), updatable);
     }
 
     @Override
-    public void removeObject(Object object) {
-        stateObjects.remove(object.hashCode());
-        renderables.remove(object.hashCode());
+    public void removeUpdatable(UpdatableInterface updatable) {
+        updatables.remove(updatable.hashCode());
     }
 
     @Override
-    public Iterable<Object> getObjects() {
-        return stateObjects.values();
+    public Iterable<UpdatableInterface> getUpdatables() {
+        return updatables.values();
     }
 
     @Override
-    public Iterable<Object> getRenderables() {
-        return renderables.values();
+    public void insertObjectToRender(Object object) {
+        objectsToRender.put(object.hashCode(), object);
     }
 
-    protected abstract Map<Integer, Object> getStateObjectsMap();
+    @Override
+    public void removeObjectToRender(Object object) {
+        objectsToRender.remove(object.hashCode());
+    }
 
-    protected abstract Map<Integer, Object> getRenderablesMap();
+    @Override
+    public Iterable<Object> getObjectsToRender() {
+        return objectsToRender.values();
+    }
+
+    protected abstract Map<Integer, UpdatableInterface> getMapForUpdatableObjects();
+
+    protected abstract Map<Integer, Object> getMapForObjectsToRender();
 }

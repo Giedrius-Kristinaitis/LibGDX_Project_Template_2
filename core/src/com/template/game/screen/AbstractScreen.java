@@ -80,7 +80,6 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
         drawToStage();
 
         // TODO: create render queue, add shape renderer on top of the sprite batch (maybe)
-        // TODO: split rendering and updating responsibilities into two classes
         // TODO: refactor resource manager (and remove redundant comments)
         // TODO: load resources for each screen individually (maybe)
         // TODO: extract com.template.game.config and io.file packages into separate repository after testing

@@ -1,23 +1,19 @@
 package com.template.game.state;
 
-import com.template.game.state.render.RendererCheckerInterface;
+import com.template.game.state.update.UpdatableInterface;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ConcurrentGameState extends AbstractGameState {
 
-    public ConcurrentGameState(RendererCheckerInterface rendererChecker) {
-        super(rendererChecker);
+    @Override
+    protected Map<Integer, UpdatableInterface> getMapForUpdatableObjects() {
+        return new ConcurrentHashMap<Integer, UpdatableInterface>();
     }
 
     @Override
-    protected Map<Integer, Object> getStateObjectsMap() {
-        return new ConcurrentHashMap<Integer, Object>();
-    }
-
-    @Override
-    protected Map<Integer, Object> getRenderablesMap() {
+    protected Map<Integer, Object> getMapForObjectsToRender() {
         return new ConcurrentHashMap<Integer, Object>();
     }
 }

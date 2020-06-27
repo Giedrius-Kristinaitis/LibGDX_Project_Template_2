@@ -17,7 +17,7 @@ public class GameStateRenderer implements GameStateRendererInterface {
 
     @Override
     public void render(Batch batch, GameStateInterface state) {
-        Iterable<Object> renderables = state.getRenderables();
+        Iterable<Object> renderables = state.getObjectsToRender();
 
         for (Object renderable : renderables) {
             if (!rendererChecker.hasRendererFor(renderable.getClass())) {
@@ -30,7 +30,7 @@ public class GameStateRenderer implements GameStateRendererInterface {
 
     @Override
     public void render(ShapeRenderer shapeRenderer, GameStateInterface state) {
-        Iterable<Object> renderables = state.getRenderables();
+        Iterable<Object> renderables = state.getObjectsToRender();
 
         for (Object renderable : renderables) {
             if (!this.rendererChecker.hasRendererFor(renderable.getClass())) {

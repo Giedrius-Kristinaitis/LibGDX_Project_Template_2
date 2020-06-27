@@ -1,12 +1,18 @@
 package com.template.game.state;
 
+import com.template.game.state.update.UpdatableInterface;
+
 public interface GameStateInterface {
 
-    void insertObject(Object object);
+    void insertUpdatable(UpdatableInterface updatable);
 
-    void removeObject(Object object);
+    void removeUpdatable(UpdatableInterface updatable);
 
-    Iterable<Object> getObjects();
+    Iterable<UpdatableInterface> getUpdatables();
 
-    Iterable<Object> getRenderables();
+    void insertObjectToRender(Object object);
+
+    void removeObjectToRender(Object object);
+
+    Iterable<Object> getObjectsToRender();
 }
