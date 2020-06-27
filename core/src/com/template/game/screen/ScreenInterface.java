@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public interface ScreenInterface {
 
+    void dispose();
+
     void draw(Batch batch, OrthographicCamera cam);
 
     void draw(ShapeRenderer shapeRenderer, OrthographicCamera cam);
