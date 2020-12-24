@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import java.util.Map;
+
 public interface ScreenInterface {
 
     void dispose();
@@ -18,6 +20,8 @@ public interface ScreenInterface {
     void update(double delta);
 
     void setupUI(Stage stage);
+
+    Map<String, Class> getAssetsToLoad();
 
     InputProcessor getInputProcessor();
 

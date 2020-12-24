@@ -12,6 +12,8 @@ import com.template.game.io.file.noded.node.ValueFinderInterface;
 import com.template.game.logic.main.WorldConfig;
 import com.template.game.logic.main.WorldConfigInterface;
 import com.template.game.logic.renderer.RendererRegistry;
+import com.template.game.logic.screen.config.LoadingScreenConfig;
+import com.template.game.logic.screen.config.LoadingScreenConfigInterface;
 import com.template.game.resources.ResourceManager;
 import com.template.game.resources.ResourceManagerInterface;
 import com.template.game.screen.*;
@@ -64,5 +66,6 @@ public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceReg
         registerPreference(MainThreadRunnableQueueInterface.class, MainThreadRunnableQueue.class);
         registerPreference(WorldConfigInterface.class, WorldConfig.class);
         registerPreference(GameStateProviderInterface.class, GameStateProvider.class);
+        registerPreference(LoadingScreenConfigInterface.class, LoadingScreenConfig.class);
     }
 }

@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.Map;
+
 public abstract class AbstractScreen extends ScreenAdapter implements ScreenInterface {
 
     private Viewport viewport;
@@ -116,6 +118,15 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
 
     @Override
     public void setupUI(Stage stage) {
+    }
+
+    @Override
+    public Map<String, Class> getAssetsToLoad() {
+        return null;
+    }
+
+    protected Viewport getViewport() {
+        return viewport;
     }
 
     private void performUpdates(float delta) {

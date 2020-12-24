@@ -6,6 +6,10 @@ public class ShapeRendererFactory implements ShapeRendererFactoryInterface {
 
     @Override
     public ShapeRenderer create() {
-        return new ShapeRenderer();
+        ShapeRenderer renderer = new ShapeRenderer();
+
+        renderer.setAutoShapeType(true);
+
+        return renderer;
     }
 }

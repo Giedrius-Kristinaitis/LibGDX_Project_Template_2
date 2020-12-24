@@ -37,6 +37,7 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void draw(Batch batch, OrthographicCamera cam) {
         gameStateRenderer.render(batch, gameStateProvider.getGameState());
+        System.out.println("ccccc");
     }
 
     @Override
