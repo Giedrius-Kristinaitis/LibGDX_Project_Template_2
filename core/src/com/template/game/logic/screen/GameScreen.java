@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.template.game.logic.main.Game;
 import com.template.game.screen.AbstractScreen;
 import com.template.game.screen.batch.BatchFactoryInterface;
 import com.template.game.screen.shaperenderer.ShapeRendererFactoryInterface;
@@ -22,9 +23,12 @@ public class GameScreen extends AbstractScreen {
 
     private UpdateHandlerInterface updateHandler;
 
-    public GameScreen(ViewportFactoryInterface viewportFactory, BatchFactoryInterface batchFactory, ShapeRendererFactoryInterface shapeRendererFactory, StageFactoryInterface stageFactory, GameStateProviderInterface gameStateProvider, GameStateRendererInterface gameStateRenderer, UpdateHandlerFactoryInterface updateHandlerFactory) {
+    private Game game;
+
+    public GameScreen(ViewportFactoryInterface viewportFactory, BatchFactoryInterface batchFactory, ShapeRendererFactoryInterface shapeRendererFactory, StageFactoryInterface stageFactory, GameStateProviderInterface gameStateProvider, GameStateRendererInterface gameStateRenderer, UpdateHandlerFactoryInterface updateHandlerFactory, Game game) {
         super(viewportFactory.create(), batchFactory.create(), shapeRendererFactory.create(), stageFactory.create(), null);
 
+        this.game = game;
         this.gameStateProvider = gameStateProvider;
         this.gameStateRenderer = gameStateRenderer;
         this.updateHandler = updateHandlerFactory.create(gameStateProvider.getGameState());
@@ -65,12 +69,14 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void show() {
         super.show();
+        game.initialize();
         updateHandler.start();
     }
 
     @Override
     public void hide() {
         super.hide();
+        game.dispose();
         updateHandler.stop();
     }
 

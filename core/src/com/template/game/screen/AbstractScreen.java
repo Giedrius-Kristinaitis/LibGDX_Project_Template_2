@@ -76,10 +76,8 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
         drawToShapeRenderer();
         drawToStage();
 
-        // TODO: create render queue, add shape renderer on top of the sprite batch (maybe)
-        // TODO: refactor resource manager (and remove redundant comments)
-        // TODO: load resources for each screen individually (maybe)
         // TODO: extract com.template.game.config and io.file packages into separate repository after testing
+        // TODO: finish loading screen and maybe refactor resource manager
     }
 
     @Override
@@ -127,9 +125,11 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
     }
 
     private void drawToBatch() {
+        batch.begin();
         viewport.apply(true);
         viewport.getCamera().update();
         draw(batch, (OrthographicCamera) viewport.getCamera());
+        batch.end();
     }
 
     private void drawToShapeRenderer() {
@@ -137,7 +137,9 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
             return;
         }
 
+        shapeRenderer.begin();
         draw(shapeRenderer, (OrthographicCamera) viewport.getCamera());
+        shapeRenderer.end();
     }
 
     private void drawToStage() {

@@ -40,6 +40,11 @@ public abstract class AbstractGameState implements GameStateInterface {
     }
 
     @Override
+    public void clearObjectsToRender() {
+        objectsToRender.clear();
+    }
+
+    @Override
     public Iterable<Object> getObjectsToRender() {
         return objectsToRender.values();
     }

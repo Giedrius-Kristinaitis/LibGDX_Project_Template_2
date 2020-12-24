@@ -2,7 +2,7 @@ package com.template.game.screen.viewport;
 
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.template.game.logic.WorldConfigInterface;
+import com.template.game.logic.main.WorldConfigInterface;
 
 public class FillViewportFactory implements ViewportFactoryInterface {
 

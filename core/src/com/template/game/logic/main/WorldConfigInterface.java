@@ -1,4 +1,4 @@
-package com.template.game.logic;
+package com.template.game.logic.main;
 
 public interface WorldConfigInterface {
 

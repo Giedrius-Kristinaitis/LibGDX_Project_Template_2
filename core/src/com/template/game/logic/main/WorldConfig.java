@@ -1,4 +1,4 @@
-package com.template.game.logic;
+package com.template.game.logic.main;
 
 import com.template.game.config.ConfigValueProviderInterface;
 

@@ -14,5 +14,7 @@ public interface GameStateInterface {
 
     void removeObjectToRender(Object object);
 
+    void clearObjectsToRender();
+
     Iterable<Object> getObjectsToRender();
 }
