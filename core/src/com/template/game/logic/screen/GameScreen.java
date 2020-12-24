@@ -15,6 +15,8 @@ import com.template.game.state.render.GameStateRendererInterface;
 import com.template.game.state.update.updatehandler.UpdateHandlerFactoryInterface;
 import com.template.game.state.update.updatehandler.UpdateHandlerInterface;
 
+import java.util.Map;
+
 public class GameScreen extends AbstractScreen {
 
     private GameStateProviderInterface gameStateProvider;
@@ -52,6 +54,11 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void setupUI(Stage stage) {
 
+    }
+
+    @Override
+    public Map<String, Class> getAssetsToLoad() {
+        return super.getAssetsToLoad();
     }
 
     @Override
