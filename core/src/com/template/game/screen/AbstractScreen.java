@@ -120,7 +120,10 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
 
     private void performUpdates(float delta) {
         update((double) delta);
-        stage.act(delta);
+
+        if (stage != null) {
+            stage.act(delta);
+        }
     }
 
     private void drawToBatch() {

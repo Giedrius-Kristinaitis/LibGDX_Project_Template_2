@@ -3,8 +3,11 @@ package com.template.game;
 import com.badlogic.gdx.Game;
 import com.di.ObjectManager;
 import com.di.ObjectManagerInterface;
+import com.template.game.logic.screen.LoadingScreen;
 import com.template.game.screen.ScreenApplierInterface;
+import com.template.game.screen.ScreenDestroyerInterface;
 import com.template.game.screen.ScreenInterface;
+import com.template.game.screen.ScreenSwitcherInterface;
 
 public class ApplicationBootstrapper extends Game implements ScreenApplierInterface {
 
@@ -38,5 +41,14 @@ public class ApplicationBootstrapper extends Game implements ScreenApplierInterf
 
         game = (GameInterface) objectManager.instantiate(GameInterface.class);
         game.setScreenApplier(this);
+
+        ScreenDestroyerInterface screenDestroyer = (ScreenDestroyerInterface) objectManager.instantiate(ScreenDestroyerInterface.class);
+        game.setScreenDestroyer(screenDestroyer);
+
+        ScreenSwitcherInterface screenSwitcher = (ScreenSwitcherInterface) objectManager.instantiate(ScreenSwitcherInterface.class);
+
+        LoadingScreen loadingScreen = (LoadingScreen) objectManager.instantiate(LoadingScreen.class);
+
+        screenSwitcher.switchScreen(loadingScreen);
     }
 }

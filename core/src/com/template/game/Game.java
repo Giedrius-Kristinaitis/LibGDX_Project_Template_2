@@ -13,8 +13,7 @@ public class Game implements GameInterface, ScreenApplierInterface {
 
     private ResourceManagerInterface resourceManager;
 
-    public Game(ScreenDestroyerInterface screenDestroyer, ResourceManagerInterface resourceManager) {
-        this.screenDestroyer = screenDestroyer;
+    public Game(ResourceManagerInterface resourceManager) {
         this.resourceManager = resourceManager;
     }
 
@@ -32,5 +31,10 @@ public class Game implements GameInterface, ScreenApplierInterface {
     @Override
     public void setScreenApplier(ScreenApplierInterface applier) {
         this.screenApplier = applier;
+    }
+
+    @Override
+    public void setScreenDestroyer(ScreenDestroyerInterface screenDestroyer) {
+        this.screenDestroyer = screenDestroyer;
     }
 }
