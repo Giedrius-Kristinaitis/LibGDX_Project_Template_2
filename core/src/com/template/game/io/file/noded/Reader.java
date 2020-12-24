@@ -2,6 +2,7 @@ package com.template.game.io.file.noded;
 
 import com.di.annotation.Parameters;
 import com.template.game.io.file.converter.ConverterInterface;
+import com.template.game.io.file.noded.line.CommentRemover;
 import com.template.game.io.file.noded.line.IndentationCalculator;
 import com.template.game.io.file.noded.line.Trimmer;
 import com.template.game.io.file.noded.line.Validator;
@@ -21,13 +22,15 @@ public class Reader implements ReaderInterface {
     private Validator validator;
     private ConverterInterface inputConverter;
     private Trimmer trimmer;
+    private CommentRemover commentRemover;
 
-    @Parameters({"indentationCalculator", "validator", "inputConverter", "trimmer"})
-    public Reader(IndentationCalculator indentationCalculator, Validator validator, ConverterInterface inputConverter, Trimmer trimmer) {
+    @Parameters({"indentationCalculator", "validator", "inputConverter", "trimmer", "commentRemover"})
+    public Reader(IndentationCalculator indentationCalculator, Validator validator, ConverterInterface inputConverter, Trimmer trimmer, CommentRemover commentRemover) {
         this.indentationCalculator = indentationCalculator;
         this.validator = validator;
         this.inputConverter = inputConverter;
         this.trimmer = trimmer;
+        this.commentRemover = commentRemover;
     }
 
     @Override
@@ -47,13 +50,15 @@ public class Reader implements ReaderInterface {
         String line = null;
 
         while ((line = reader.readLine()) != null) {
-            line = trimmer.trim(line, COMMENT_SYMBOL);
+            line = commentRemover.removeComments(line, COMMENT_SYMBOL);
 
             if (!validator.validate(line, DELIMITER)) {
                 continue;
             }
 
             int indentationLevel = indentationCalculator.getLineIndentationLevel(line);
+
+            line = trimmer.trim(line);
 
             currentNode = getCurrentNodeFromIndentation(currentNode, previousIndentationLevel, indentationLevel);
             currentNode = modifyCurrentNode(currentNode, line);
@@ -81,7 +86,7 @@ public class Reader implements ReaderInterface {
     private NodeInterface modifyCurrentNode(NodeInterface currentNode, String line) {
         String[] pathValue = line.split(DELIMITER);
         String path = pathValue[0];
-        String value = pathValue[1];
+        String value = pathValue.length > 1 ? pathValue[1] : null;
 
         if (value == null || value.isEmpty()) {
             NodeInterface child = new Node();
