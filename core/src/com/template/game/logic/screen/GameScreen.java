@@ -58,7 +58,7 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public Map<String, Class> getAssetsToLoad() {
-        return super.getAssetsToLoad();
+        return null;
     }
 
     @Override

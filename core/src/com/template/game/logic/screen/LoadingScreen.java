@@ -56,13 +56,11 @@ public class LoadingScreen extends AbstractScreen {
     public void update(double delta) {
         super.update(delta);
 
-        resourceManager.update();
-
-        if (resourceManager.getProgress() < 1f) {
+        if (!resourceManager.update()) {
             return;
         }
 
-        resourceManager.unload(loadingScreenConfig.getSplashImageName(), Texture.class);
+        resourceManager.unload(loadingScreenConfig.getSplashImageName());
 
         screenSwitcher.switchScreen(screenToSwitchTo);
     }

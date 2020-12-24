@@ -42,9 +42,9 @@ public interface ResourceManagerInterface {
 
     Texture texture(String name);
 
-    void unload(String[] resources, Class[] classes);
+    void unload(String[] resources);
 
-    void unload(String name, Class clazz);
+    void unload(String name);
 
     boolean update();
 }
