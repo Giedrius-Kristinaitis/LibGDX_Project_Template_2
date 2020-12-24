@@ -23,7 +23,7 @@ import com.template.game.screen.shaperenderer.ShapeRendererFactory;
 import com.template.game.screen.shaperenderer.ShapeRendererFactoryInterface;
 import com.template.game.screen.stage.StageFactory;
 import com.template.game.screen.stage.StageFactoryInterface;
-import com.template.game.screen.viewport.FillViewportFactory;
+import com.template.game.screen.viewport.StretchViewportFactory;
 import com.template.game.screen.viewport.ViewportFactoryInterface;
 import com.template.game.state.GameStateProvider;
 import com.template.game.state.GameStateProviderInterface;
@@ -57,7 +57,7 @@ public class DependencyInjectionPreferenceRegistry extends AbstractPreferenceReg
         registerPreference(BatchFactoryInterface.class, SpriteBatchFactory.class);
         registerPreference(ShapeRendererFactoryInterface.class, ShapeRendererFactory.class);
         registerPreference(StageFactoryInterface.class, StageFactory.class);
-        registerPreference(ViewportFactoryInterface.class, FillViewportFactory.class);
+        registerPreference(ViewportFactoryInterface.class, StretchViewportFactory.class);
         registerPreference(GameStateRendererInterface.class, GameStateRenderer.class);
         registerPreference(GameStateUpdaterInterface.class, GameStateUpdater.class);
         registerPreference(UpdateHandlerFactoryInterface.class, UpdateHandlerFactory.class);
