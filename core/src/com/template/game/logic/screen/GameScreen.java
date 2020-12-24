@@ -53,11 +53,12 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void setupUI(Stage stage) {
-
+        // TODO: setup game screen ui
     }
 
     @Override
     public Map<String, Class> getAssetsToLoad() {
+        // TODO: define assets to be loaded, preferably, create a new class that acts as a registry, to avoid populating this class with a lot of code
         return null;
     }
 
