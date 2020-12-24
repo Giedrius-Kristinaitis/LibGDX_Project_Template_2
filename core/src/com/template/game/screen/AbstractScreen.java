@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sun.istack.internal.NotNull;
 
 public abstract class AbstractScreen extends ScreenAdapter implements ScreenInterface {
 
@@ -23,7 +22,7 @@ public abstract class AbstractScreen extends ScreenAdapter implements ScreenInte
 
     private boolean disposed;
 
-    public AbstractScreen(@NotNull Viewport viewport, @NotNull Batch batch, ShapeRenderer shapeRenderer, Stage stage, InputProcessor inputProcessor) {
+    public AbstractScreen(Viewport viewport, Batch batch, ShapeRenderer shapeRenderer, Stage stage, InputProcessor inputProcessor) {
         this.viewport = viewport;
         this.batch = batch;
         this.shapeRenderer = shapeRenderer;
