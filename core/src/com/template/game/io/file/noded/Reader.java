@@ -95,7 +95,7 @@ public class Reader implements ReaderInterface {
 
             return child;
         } else {
-            currentNode.addValue(path, value);
+            currentNode.addValue(path, value.trim());
 
             return currentNode;
         }
