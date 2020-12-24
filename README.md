@@ -12,5 +12,6 @@ All boilerplate logic is already written, all you need to do is clone the reposi
 2) renderer - contains RendererRegistry class, in which you register renderers for your game objects, place created renderers in this package or it's sub-packages too (not mandatory), every renderer must implement RendererInterface<T>, where T is the class of rendered object
 3) screen - contains all screens and their related stuff, loading screen is already written, it has it's own config inside assets/config/application.config file, there's also a game screen, in which all you need to do is set up user interface in the setupUI method and return map with assets that the screen will need inside getAssetsToLoad method. If you need any extra initialization inside game screen, do it inside show() method (this applies for all screens which extend abstract screen). You can pass an input processor in the super constructor call of the game class to handle user input
 
+Note: although the template uses dependency injection, you should avoid using it when creating your own game logic, to avoid coupling to this specific template, but you can still use it if you want
 
 Old project template version: https://github.com/Giedrius-Kristinaitis/LibGDX_Project_Template
