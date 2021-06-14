@@ -7,7 +7,7 @@ public class GameStateUpdater implements GameStateUpdaterInterface {
     @Override
     public void update(double delta, GameStateInterface state) {
         for (UpdatableInterface updatable : state.getUpdatables()) {
-
+            updatable.update(delta);
         }
     }
 }
